@@ -1,0 +1,1 @@
+training_data_path = "https://risk-classification-nevin.s3.us-east-2.amazonaws.com/training-data/german_credit_data.csv"
