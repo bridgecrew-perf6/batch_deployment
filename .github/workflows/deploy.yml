@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECS
+name: Deploy to Amazon ECR
 
 on:
   push:
@@ -11,6 +11,7 @@ jobs:
     - name: Build image
       runs-on: ubuntu-latest
 
+    steps:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
