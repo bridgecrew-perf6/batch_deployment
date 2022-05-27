@@ -16,8 +16,6 @@ def train(training_data_path: str) -> None:
     test = data_df
 
     _logger.info("Training the model")
-    print(train.head(2))
-    print(test.head(2))
     y_train_pred = classification_pipeline.fit_transform(train)
     y_train = pd.get_dummies(train.iloc[:, -1], drop_first=True).values
     train_acc = (y_train == y_train_pred).mean()
