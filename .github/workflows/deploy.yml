@@ -34,7 +34,8 @@ jobs:
         ECR_REPOSITORY: risk_classifier
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        echo $ECR_REGISTRY
-        echo $ECR_REPOSITORY
+        echo "\n\n\n Look this"
+        echo "$ECR_REGISTRY"
+        echo "$ECR_REPOSITORY"
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
