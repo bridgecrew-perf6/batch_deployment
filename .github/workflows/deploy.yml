@@ -34,5 +34,6 @@ jobs:
         ECR_REPOSITORY: d2s0x5m0/risk_classifier
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t public.ecr.aws/d2s0x5m0/risk_classifier:$IMAGE_TAG -t public.ecr.aws/d2s0x5m0/risk_classifier:latest .
+        docker build -t risk_classifier .
+        docker tag risk_classifier:latest public.ecr.aws/d2s0x5m0/risk_classifier:latest
         docker push public.ecr.aws/d2s0x5m0/risk_classifier:latest
