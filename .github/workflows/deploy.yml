@@ -29,11 +29,12 @@ jobs:
       run: aws secretsmanager get-secret-value --secret-id simple_bank --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > app.env
 
     - name: Build, tag, and push image to Amazon ECR
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: d2s0x5m0/risk_classifier
-        IMAGE_TAG: ${{ github.sha }}
-      run: |
-        docker build -t risk_classifier .
-        docker tag risk_classifier:latest public.ecr.aws/d2s0x5m0/risk_classifier:latest
-        docker push public.ecr.aws/d2s0x5m0/risk_classifier:latest
+          env:
+            ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+            ECR_REPOSITORY: risk_classifier
+            IMAGE_TAG: ${{ github.sha }}
+          run: |
+            echo $ECR_REGISTRY
+            echo $ECR_REPOSITORY
+            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
