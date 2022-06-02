@@ -4,6 +4,5 @@ COPY . /home/credict_classifier/
 WORKDIR /home/credict_classifier/
 
 RUN pip install -r requirements.txt
-RUN python train_pipeline.py
 
 CMD ["python", "train_pipeline.py"]

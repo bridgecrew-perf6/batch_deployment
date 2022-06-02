@@ -1,5 +1,5 @@
 from classification_model.pipeline import classification_pipeline
-from sklearn.model_selection import train_test_split
+from classification_model.utils.utils import save_model_to_s3
 import pandas as pd
 
 import logging
@@ -26,4 +26,6 @@ def train(training_data_path: str) -> None:
 
     _logger.info(f"Train accuracy is: {train_acc}. Test accuracy is {test_acc}")
     _logger.info("Saving the model")
-    pickle.dump(classification_pipeline, open("saved_models/model.pkl", "wb"))
+
+    model_pickle = pickle.dumps(classification_pipeline)
+    save_model_to_s3(model_pickle)
